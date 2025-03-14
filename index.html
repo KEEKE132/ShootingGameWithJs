@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Shooting 2.8v</title>
+    <style>
+        #box {
+            width: 1024px;
+            height: 720px;
+            position: relative;
+            margin: 100px auto 100px;
+            border: solid 4px black;
+            border-radius: 10px;
+        }
+
+        #layer {
+            width: 1124px;
+            height: 820px;
+            position: absolute;
+            top: -50px;
+            left: -50px;
+        }
+
+        #ship {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background: royalblue;
+            top: 355px;
+            left: 507px;
+            border-radius: 15px;
+        }
+
+        #anchor {
+            width: 5px;
+            height: 5px;
+            position: absolute;
+            border-radius: 5px;
+            border: solid 1px black;
+            top: 310px;
+            left: 557px;
+        }
+
+        #expbar {
+            width: 1024px;
+            height: 20px;
+            position: absolute;
+            top: -24px;
+            border-radius: 20px;
+        }
+
+        #level {
+            width: 100px;
+            height: 25px;
+            line-height: 25px;
+            position: absolute;
+            top: 0px;
+            right: 5px;
+            text-align: right;
+            color: rgba(0,0,0,0.5);
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        #upGrid {
+            display: grid;
+            width: 1024px;
+            height: 720px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: rgba(0,0,0,0.15);
+            grid-template-columns: 1024px;
+            grid-template-rows: 1fr 1fr 1fr
+        }
+
+        choice {
+            box-shadow: 2px 2px 15px -1px black;
+            border-radius: 30px;
+            margin: 20px 50px;
+            line-height: 30px;
+            font-size: 20pt;
+            text-align: center;
+            font-weight: 500;
+            box-sizing: border-box;
+            background: rgb(240,240,240);
+        }
+
+        .enemy {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: red;
+            border-radius: 20px;
+            border: solid 1px palevioletred;
+            box-sizing: border-box;
+        }
+
+        #time {
+            width: 100%;
+            height: 100%;
+            line-height: 720px;
+            position: absolute;
+            text-align: center;
+            color: rgba(0,0,0,0.1);
+            font-size: 150px;
+            font-weight: 500;
+        }
+
+        .blizzard {
+            width: 1024px;
+            height: 720px;
+            position: absolute;
+            border-radius: 10px;
+            background: rgba(0,0,255,0.05)
+        }
+
+        .arrow {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background: black;
+            border-radius: 10px;
+        }
+
+        .ball {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: gray;
+            border-radius: 20px;
+        }
+
+        .shotgun {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background: black;
+            border-radius: 15px;
+        }
+
+        .machinegun {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background: darkslategray;
+            border-radius: 5px;
+        }
+
+        .nansa {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background: black;
+            border-radius: 10px;
+        }
+
+        .spear {
+            width: 6px;
+            height: 6px;
+            position: absolute;
+            background: green;
+            border-radius: 6px;
+        }
+
+        .bomb {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background: gray;
+            border-radius: 15px;
+        }
+
+        .bombE {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background: rgba(255,0,0,0.2);
+            border-radius: 15px;
+        }
+
+        .spin {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background: lightblue;
+            border-radius: 10px;
+        }
+
+        #spotE {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border: solid 2px gray;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .spot {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: rgba(255,0,0,0.3);
+            border-radius: 20px;
+        }
+
+        #area {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: rgba(255,155,85,0.2);
+            border-radius: 50px;
+        }
+
+        .stun {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            border: solid 8px rgba(0,0,0,0.5);
+            border-radius: 50px;
+            box-sizing: border-box;
+        }
+
+        .bombardE {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border: solid 2px gray;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .bombard {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: rgba(255,0,0,0.3);
+            border-radius: 20px;
+        }
+
+        .thunder {
+            width: 15px;
+            height: 15px;
+            position: absolute;
+            background: rgba(255,178,0,0.3);
+            border-radius: 20px;
+        }
+
+        #pause {
+            width: 300px;
+            height: 30px;
+            position: absolute;
+            line-height: 30px;
+            font-size: 30px;
+            display: none;
+            color: black;
+            top: -80px;
+            left: 450px;
+        }
+
+        #info {
+            width: 300px;
+            height: 30px;
+            line-height: 15px;
+            position: absolute;
+            text-align: left;
+            color: rgb(0,0,0);
+            font-size: 15px;
+            font-weight: 500;
+            top: 700px;
+            right: -350px;
+        }
+    </style>
+</head>
+<body>
+    <div id='box'>
+        <div id='pause'>PAUSE</div>
+        <div id='time'>0:00</div>
+        <div id='ship'></div>
+        <span id='spea1'></span>
+        <span id='sepa2'></span>
+        <canvas id='expbar'></canvas>
+        <div id='level'>Lv 1</div>
+        <div id='layer'></div>
+        <div id='upGrid'>
+            <choice id='c1'></choice>
+            <choice id='c2'></choice>
+            <choice id='c3'></choice>
+        </div>
+        <div id='info'>조작:WASD, 마우스<br>일시정지:ESC<br>20분에 나오는 보스 잡으면 클리어</div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>
